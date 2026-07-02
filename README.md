@@ -2,25 +2,25 @@
 
 **Open-source Invalid Traffic detection at ad-tech scale.**
 
-OpenIVT is a full-stack platform that catches the bots, click farms, spoofed devices, and cookie-fraud rings that quietly drain digital advertising budgets. It ships **156 threat detectors**, a browser signal-collection snippet, a Go detection engine built for **500M+ scans/day**, and a React dashboard to see it all — no black boxes, no per-scan billing.
+OpenIVT is a full-stack platform that catches the bots, click farms, spoofed devices, and cookie-fraud rings that quietly drain digital advertising budgets. It ships **156 threat detectors**, a browser signal-collection snippet, a Go detection engine built for **500M+ scans/day**, and a React dashboard to see it all - no black boxes, no per-scan billing.
 
 > Most IVT vendors are a closed API and an invoice. OpenIVT is the whole stack, open for you to read, run, and extend.
 
 ### The black-box problem
 
-The IVT industry runs on closed, proprietary scoring engines that don't talk to each other. One vendor routinely flags another's *clean* traffic as invalid — and vice versa — with zero shared methodology or collaboration between them. The result is a fractured, contradictory picture where no one can agree on what actually counts as IVT and what doesn't. Publishers get penalized twice, advertisers lose trust, and legitimate traffic gets caught in the crossfire.
+The IVT industry runs on closed, proprietary scoring engines that don't talk to each other. One vendor routinely flags another's *clean* traffic as invalid - and vice versa - with zero shared methodology or collaboration between them. The result is a fractured, contradictory picture where no one can agree on what actually counts as IVT and what doesn't. Publishers get penalized twice, advertisers lose trust, and legitimate traffic gets caught in the crossfire.
 
-OpenIVT takes the opposite stance: **every detector is open, documented, and inspectable.** When traffic gets flagged, you can see exactly which signal fired and why — a shared, transparent baseline instead of one more black box adding noise to the argument.
+OpenIVT takes the opposite stance: **every detector is open, documented, and inspectable.** When traffic gets flagged, you can see exactly which signal fired and why - a shared, transparent baseline instead of one more black box adding noise to the argument.
 
 ---
 
 ## Why OpenIVT?
 
-- 🕵️ **156 detectors, fully documented** — Bot automation, click fraud, impression fraud, device spoofing, malware injection, network anomalies, session fraud, behavioral tells, and audience/cookie fraud. Every rule is inspectable, not a mystery score.
-- ⚡ **Built for scale** — Kafka → worker pool → ClickHouse pipeline engineered for half a billion scans a day, with Redis-backed caching and aggregation.
-- 🍪 **Cookie-fraud detection that's genuinely novel** — Catches "orphan" DMP/identity cookies (BlueKai, LiveRamp, UID2, Lotame, Adobe AAM) injected to inflate CPMs, and detects audience-cookie *replay attacks* by correlating value hashes across IPs in real time.
-- 🔒 **Privacy-respecting by design** — Cookie values never leave the browser in plaintext; only a lightweight fingerprint is emitted.
-- 🖥️ **Own your data** — Everything runs on your infrastructure. Your signals, your database, your rules.
+- 🕵️ **156 detectors, fully documented** - Bot automation, click fraud, impression fraud, device spoofing, malware injection, network anomalies, session fraud, behavioral tells, and audience/cookie fraud. Every rule is inspectable, not a mystery score.
+- ⚡ **Built for scale** - Kafka → worker pool → ClickHouse pipeline engineered for half a billion scans a day, with Redis-backed caching and aggregation.
+- 🍪 **Cookie-fraud detection that's genuinely novel** - Catches "orphan" DMP/identity cookies (BlueKai, LiveRamp, UID2, Lotame, Adobe AAM) injected to inflate CPMs, and detects audience-cookie *replay attacks* by correlating value hashes across IPs in real time.
+- 🔒 **Privacy-respecting by design** - Cookie values never leave the browser in plaintext; only a lightweight fingerprint is emitted.
+- 🖥️ **Own your data** - Everything runs on your infrastructure. Your signals, your database, your rules.
 
 ---
 
@@ -28,9 +28,9 @@ OpenIVT takes the opposite stance: **every detector is open, documented, and ins
 
 ```
 Browser Snippet (TypeScript)
-  ├── Main beacon     — page-load signals, sent immediately
-  ├── Auction beacon  — Prebid/SSP signals, ~500ms delayed
-  └── NSFW beacon     — on-device image classification (TF.js), fires when idle
+  ├── Main beacon     - page-load signals, sent immediately
+  ├── Auction beacon  - Prebid/SSP signals, ~500ms delayed
+  └── NSFW beacon     - on-device image classification (TF.js), fires when idle
          │
          ▼
   Go Ingest API  →  Kafka  →  Worker Pool  →  157 Detectors  →  ClickHouse
@@ -59,7 +59,7 @@ Four components, one system:
 | 🟠 **Medium Risk** | 24 | Suspicious referrers, viewability spoofing, floor manipulation, adult-content misrepresentation |
 | 🟡 **Low Risk** | 15 | Old browsers, mobile emulation, timezone/IP mismatch, incognito, unusual signals |
 
-The full catalog — code, name, signals, and detection logic for all 156 detectors — lives in the dashboard under **Threat Catalog**.
+The full catalog - code, name, signals, and detection logic for all 156 detectors - lives in the dashboard under **Threat Catalog**.
 
 ---
 
