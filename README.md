@@ -2,15 +2,21 @@
 
 **Open-source Invalid Traffic detection at ad-tech scale.**
 
-OpenIVT is a full-stack platform that catches the bots, click farms, spoofed devices, and cookie-fraud rings that quietly drain digital advertising budgets. It ships **157 threat detectors**, a browser signal-collection snippet, a Go detection engine built for **500M+ scans/day**, and a React dashboard to see it all — no black boxes, no per-scan billing.
+OpenIVT is a full-stack platform that catches the bots, click farms, spoofed devices, and cookie-fraud rings that quietly drain digital advertising budgets. It ships **156 threat detectors**, a browser signal-collection snippet, a Go detection engine built for **500M+ scans/day**, and a React dashboard to see it all — no black boxes, no per-scan billing.
 
 > Most IVT vendors are a closed API and an invoice. OpenIVT is the whole stack, open for you to read, run, and extend.
+
+### The black-box problem
+
+The IVT industry runs on closed, proprietary scoring engines that don't talk to each other. One vendor routinely flags another's *clean* traffic as invalid — and vice versa — with zero shared methodology or collaboration between them. The result is a fractured, contradictory picture where no one can agree on what actually counts as IVT and what doesn't. Publishers get penalized twice, advertisers lose trust, and legitimate traffic gets caught in the crossfire.
+
+OpenIVT takes the opposite stance: **every detector is open, documented, and inspectable.** When traffic gets flagged, you can see exactly which signal fired and why — a shared, transparent baseline instead of one more black box adding noise to the argument.
 
 ---
 
 ## Why OpenIVT?
 
-- 🕵️ **157 detectors, fully documented** — Bot automation, click fraud, impression fraud, device spoofing, malware injection, network anomalies, session fraud, behavioral tells, and audience/cookie fraud. Every rule is inspectable, not a mystery score.
+- 🕵️ **156 detectors, fully documented** — Bot automation, click fraud, impression fraud, device spoofing, malware injection, network anomalies, session fraud, behavioral tells, and audience/cookie fraud. Every rule is inspectable, not a mystery score.
 - ⚡ **Built for scale** — Kafka → worker pool → ClickHouse pipeline engineered for half a billion scans a day, with Redis-backed caching and aggregation.
 - 🍪 **Cookie-fraud detection that's genuinely novel** — Catches "orphan" DMP/identity cookies (BlueKai, LiveRamp, UID2, Lotame, Adobe AAM) injected to inflate CPMs, and detects audience-cookie *replay attacks* by correlating value hashes across IPs in real time.
 - 🔒 **Privacy-respecting by design** — Cookie values never leave the browser in plaintext; only a lightweight fingerprint is emitted.
@@ -39,7 +45,7 @@ Four components, one system:
 | Component | Stack | Role |
 |---|---|---|
 | **Browser Snippet** | TypeScript | ~500B loader + ~12KB probe bundle collects client-side signals |
-| **Detection Server** | Go | Runs 157 detectors concurrently against every signal |
+| **Detection Server** | Go | Runs 156 detectors concurrently against every signal |
 | **Dashboard** | React / Vite | Manage threats, inspect events, browse the catalog, view analytics |
 | **Data Pipeline** | Kafka · ClickHouse · Redis | High-throughput ingest, storage, and caching |
 
@@ -52,9 +58,8 @@ Four components, one system:
 | 🔴 **High Risk** | 117 | Headless/WebDriver bots, click & impression fraud, canvas/WebGL spoofing, ad injection, proxy/VPN, session hijacking, cookie-jar injection |
 | 🟠 **Medium Risk** | 24 | Suspicious referrers, viewability spoofing, floor manipulation, adult-content misrepresentation |
 | 🟡 **Low Risk** | 15 | Old browsers, mobile emulation, timezone/IP mismatch, incognito, unusual signals |
-| ⚪ **MFA Context** | 1 | Suppresses false positives on legitimate multi-factor auth flows |
 
-The full catalog — code, name, signals, and detection logic for all 157 detectors — lives in the dashboard under **Threat Catalog**.
+The full catalog — code, name, signals, and detection logic for all 156 detectors — lives in the dashboard under **Threat Catalog**.
 
 ---
 
