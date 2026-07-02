@@ -33,7 +33,7 @@ Browser Snippet (TypeScript)
   └── NSFW beacon     - on-device image classification (TF.js), fires when idle
          │
          ▼
-  Go Ingest API  →  Kafka  →  Worker Pool  →  157 Detectors  →  ClickHouse
+  Go Ingest API  →  Kafka  →  Worker Pool  →  156 Detectors  →  ClickHouse
                                    ↑
                               Redis (cache + cookie-collision aggregation)
 
